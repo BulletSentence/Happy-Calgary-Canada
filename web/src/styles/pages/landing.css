@@ -52,4 +52,11 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    width: 80px;
+    height: 80px;
+    background: #ffd666;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
