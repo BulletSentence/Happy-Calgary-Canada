@@ -3,6 +3,8 @@ import mapMarker from '../images/marker.svg'
 import { FiPlus } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import '../styles/pages/orphMap.css'
+import { Map, TileLayer } from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
 
 function OrphMap() {
     return (
@@ -18,7 +20,15 @@ function OrphMap() {
                     <span> Canada </span>
                 </footer>
             </aside>
-            <div></div>
+            <Map
+              center={[51.0272883,-114.368013]}
+              zoom={10}
+              style={{
+                  width: '100%', height: '100%'
+                }}> 
+                <TileLayer url='https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'>
+                </TileLayer> 
+                </Map>
             <Link to="" className="create-orph">
                 <FiPlus size={32} color="FFF"></FiPlus>
             </Link>
