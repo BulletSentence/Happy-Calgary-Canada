@@ -12,7 +12,7 @@ function OrphMap() {
             <aside>
                 <header>
                     <img src={mapMarker} alt='Happy'/>
-                    <h2>Escolha um orfanato no mapa</h2>
+                    <h2>Escolha um Lugar no mapa</h2>
                     <p>Muitas crianças estão esperando a sua visita :)</p>
                 </header>
                 <footer>
