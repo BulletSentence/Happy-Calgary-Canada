@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/global.css'
 import './styles/pages/landing.css'
 import logoImg from './images/Logo.svg'
+import {FiArrowRight} from 'react-icons/fi'
 
 function App() {
   return (
@@ -19,8 +20,8 @@ function App() {
             <span> Canada </span>
           </div>
 
-          <a href='#' className='enter-app'>
-           O
+          <a href='www.google.com' className='enter-app'>
+           <FiArrowRight size={26} color="rgba(0,0,0,0.6)"/>
           </a>
       </div>
     </div>
