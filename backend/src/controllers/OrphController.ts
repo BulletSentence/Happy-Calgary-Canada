@@ -18,6 +18,7 @@ export default {
     },
 
     async create(request: Request, response: Response) {
+        console.log(request.files)
         const {
             name,
             latitude,
