@@ -3,6 +3,13 @@ import { getRepository } from 'typeorm';
 import Orph from '../database/models/Orph';
 
 export default {
+
+    async index(request: Request, response: Response){
+        const orphRepository = getRepository(Orph);
+        const orphs = await orphRepository.find();
+        return response.json(orphs);
+    },
+
     async create(request: Request, response: Response) {
         const {
             name,
