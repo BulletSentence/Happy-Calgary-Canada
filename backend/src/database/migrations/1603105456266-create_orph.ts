@@ -35,7 +35,7 @@ export class createOrph1603105456266 implements MigrationInterface {
           type: 'text',
         },
         {
-          name: 'instrctions',
+          name: 'instructions',
           type: 'text',
         },
         {

@@ -19,7 +19,7 @@ export default class Orph {
     about: string;
 
     @Column()
-    instrictions: string;
+    instructions: string;
 
     @Column()
     opening_hours: string;
