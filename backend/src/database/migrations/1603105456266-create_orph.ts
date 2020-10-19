@@ -39,6 +39,10 @@ export class createOrph1603105456266 implements MigrationInterface {
           type: 'text',
         },
         {
+          name: 'opening_hours',
+          type: 'varchar',
+        },
+        {
           name: 'open_on_weekends',
           type: 'boolean',
         },
