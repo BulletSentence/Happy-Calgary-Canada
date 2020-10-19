@@ -6,7 +6,9 @@ export default {
 
     async index(request: Request, response: Response){
         const orphRepository = getRepository(Orph);
-        const orphs = await orphRepository.find();
+        const orphs = await orphRepository.find({
+            relations: ['images']
+        });
         return response.json(orphs);
     },
 
