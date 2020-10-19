@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 import { getRepository } from 'typeorm';
 import Orph from '../database/models/Orph';
+import OrphView from '../views/orph_view';
 
 export default {
 
@@ -9,7 +10,7 @@ export default {
         const orphs = await orphRepository.find({
             relations: ['images']
         });
-        return response.json(orphs);
+        return response.json(OrphView.renderMany(orphs)) ;
     },
 
     async show(request: Request, response: Response){
@@ -18,7 +19,7 @@ export default {
         const orph = await orphRepository.findOneOrFail(id, {
             relations: ['images']
         });
-        return response.json(orph);
+        return response.json(OrphView.render(orph));
     },
 
     async create(request: Request, response: Response) {
