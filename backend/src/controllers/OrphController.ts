@@ -15,7 +15,9 @@ export default {
     async show(request: Request, response: Response){
         const {id} = request.params;
         const orphRepository = getRepository(Orph);
-        const orph = await orphRepository.findOneOrFail(id);
+        const orph = await orphRepository.findOneOrFail(id, {
+            relations: ['images']
+        });
         return response.json(orph);
     },
 
