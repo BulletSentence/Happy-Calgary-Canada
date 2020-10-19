@@ -10,6 +10,13 @@ export default {
         return response.json(orphs);
     },
 
+    async show(request: Request, response: Response){
+        const {id} = request.params;
+        const orphRepository = getRepository(Orph);
+        const orph = await orphRepository.findOneOrFail(id);
+        return response.json(orph);
+    },
+
     async create(request: Request, response: Response) {
         const {
             name,
