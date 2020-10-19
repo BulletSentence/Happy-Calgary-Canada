@@ -7,7 +7,7 @@ import './database/connection';
 const app = express();
 app.use(express.json());
 
-app.post('/orph', (request, response) => {
+app.post('/orph', async (request, response) => {
 
     const {
         name,
@@ -30,10 +30,10 @@ app.post('/orph', (request, response) => {
         open_on_weekends,
     });
 
-    orphRepository.save(orph)
+    await orphRepository.save(orph);
 
     console.log(request.body);
-    return response.json({message: "Oie"});
+    return response.json({message: "Salvo"});
 });
 
 app.listen(3333);
