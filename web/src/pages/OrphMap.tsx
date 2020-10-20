@@ -1,10 +1,18 @@
 import React from 'react'
-import mapMarker from '../images/marker.svg'
-import { FiPlus } from 'react-icons/fi'
+import mapMarker from '../images/map-marker.svg'
+import { FiPlus, FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import '../styles/pages/orphMap.css'
-import { Map, TileLayer } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+
+const mapIcon = Leaflet.icon({
+    iconUrl: mapMarker,
+    iconSize: [50, 60],
+    iconAnchor: [25, 60],
+    popupAnchor: [170, 2],
+})
 
 function OrphMap() {
     return (
@@ -28,8 +36,19 @@ function OrphMap() {
                 }}> 
                 <TileLayer url='https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'>
                 </TileLayer> 
+                <Marker
+                    icon={mapIcon}
+                    position={[51.0272883,-114.368013]}>
+                <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
+                    Lar de todos
+                    <Link to='/orph/1'>
+                        <FiArrowRight size={32} color='#FFF' />
+                    </Link>
+                </Popup>
+
+                </Marker>
                 </Map>
-            <Link to="" className="create-orph">
+            <Link to="/orph/create" className="create-orph">
                 <FiPlus size={32} color="FFF"></FiPlus>
             </Link>
         </div>
