@@ -4,15 +4,8 @@ import { FiPlus, FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import '../styles/pages/orphMap.css'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
-import Leaflet from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-
-const mapIcon = Leaflet.icon({
-    iconUrl: mapMarker,
-    iconSize: [50, 60],
-    iconAnchor: [25, 60],
-    popupAnchor: [170, 2],
-})
+import mapIcon from '../utils/mapIcon'
 
 function OrphMap() {
     return (
