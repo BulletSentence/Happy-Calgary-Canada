@@ -1,19 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
+import { useParams } from 'react-router-dom';
 import '../styles/pages/orphanage.css';
 import Sidebar from "../components/Sidebar";
 import mapIcon from "../utils/mapIcon";
+import api from "../services/api";
+
+interface Orphanage {
+  id: number,
+  latitude: number,
+  longitude: number,
+  description: string,
+  name: string,
+  instructions: string,
+  opening_hours: string,
+  open_on_weekends: string,
+  images: Array<{
+    url: string
+  }>;
+}
+
+interface OrphParams {
+  id: string;
+}
 
 export default function Orphanage() {
+    const params = useParams<OrphParams>();
+    const [orph, setOrph] = useState<Orphanage>();
+    useEffect(() => {
+        api.get(`orph/${params.id}`).then(response => {
+            setOrph(response.data); 
+        }) ;
+    }, [params.id]);
+
+    if (!orph) {
+      return <p> Carregando...</p>
+    }
 
   return (
     <div id="page-orphanage">
       <Sidebar/>
       <main>
         <div className="orphanage-details">
-          <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
+          <img src={orph.images[0].url} alt="Lar das meninas" />
 
           <div className="images">
             <button className="active" type="button">
@@ -37,12 +68,13 @@ export default function Orphanage() {
           </div>
           
           <div className="orphanage-details-content">
-            <h1>Lar das meninas</h1>
-            <p>Presta assistência a crianças de 06 a 15 anos que se encontre em situação de risco e/ou vulnerabilidade social.</p>
-
+          <h1>{orph.name}</h1>
+            <p>
+              {orph.description}
+            </p>
             <div className="map-container">
               <Map 
-                center={[-27.2092052,-49.6401092]} 
+                center={[orph.latitude, orph.longitude]} 
                 zoom={16} 
                 style={{ width: '100%', height: 280 }}
                 dragging={false}
@@ -54,7 +86,7 @@ export default function Orphanage() {
                 <TileLayer 
                   url={`https://a.tile.openstreetmap.org/{z}/{x}/{y}.png`}
                 />
-                <Marker interactive={false} icon={mapIcon} position={[-27.2092052,-49.6401092]} />
+                <Marker interactive={false} icon={mapIcon} position={[orph.latitude, orph.longitude]} />
               </Map>
 
               <footer>
@@ -65,13 +97,13 @@ export default function Orphanage() {
             <hr />
 
             <h2>Instruções para visita</h2>
-            <p>Venha como se sentir mais à vontade e traga muito amor para dar.</p>
+            <p>{orph.instructions}</p>
 
             <div className="open-details">
               <div className="hour">
                 <FiClock size={32} color="#15B6D6" />
                 Segunda à Sexta <br />
-                8h às 18h
+                {orph.opening_hours}
               </div>
               <div className="open-on-weekends">
                 <FiInfo size={32} color="#39CC83" />
