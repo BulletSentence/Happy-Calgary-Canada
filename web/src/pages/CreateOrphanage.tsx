@@ -13,7 +13,7 @@ export default function CreateOrphanage() {
   const [about, setAbout] = useState('');
   const [instructions, setInstructions] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
-
+  const [open_on_weekends, setOpenOnWeekends] = useState(true);
 
   function handleMapClick(event: LeafletMouseEvent) {
     const {lat, lng } = event.latlng;
@@ -52,7 +52,7 @@ export default function CreateOrphanage() {
               <TileLayer 
                 url={`https://a.tile.openstreetmap.org/{z}/{x}/{y}.png`}
               />
-              { position.latitude != 0 ? 
+              { position.latitude !== 0 ? 
                <Marker 
                 interactive={false} 
                 icon={mapIcon} 
@@ -113,8 +113,14 @@ export default function CreateOrphanage() {
               <label htmlFor="open_on_weekends">Atende fim de semana</label>
 
               <div className="button-select">
-                <button type="button" className="active">Sim</button>
-                <button type="button">Não</button>
+                <button 
+                  type="button" 
+                  className={open_on_weekends ? 'active' : ''}
+                  onClick={() => setOpenOnWeekends(true)}>Sim</button>
+                <button 
+                type="button" 
+                className={!open_on_weekends ? 'active' : ''}
+                onClick={() => setOpenOnWeekends(false)}>Não</button>
               </div>
             </div>
           </fieldset>
