@@ -12,7 +12,7 @@ interface Orphanage {
   id: number,
   latitude: number,
   longitude: number,
-  description: string,
+  about: string,
   name: string,
   instructions: string,
   opening_hours: string,
@@ -70,7 +70,7 @@ export default function Orphanage() {
           <div className="orphanage-details-content">
           <h1>{orph.name}</h1>
             <p>
-              {orph.description}
+              {orph.about}
             </p>
             <div className="map-container">
               <Map 
