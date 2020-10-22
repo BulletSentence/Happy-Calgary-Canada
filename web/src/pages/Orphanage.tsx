@@ -30,6 +30,8 @@ interface OrphParams {
 export default function Orphanage() {
     const params = useParams<OrphParams>();
     const [orph, setOrph] = useState<Orphanage>();
+    const [activeImageIndex, setActiveImageIndex] = useState(0); 
+
     useEffect(() => {
         api.get(`orph/${params.id}`).then(response => {
             setOrph(response.data); 
@@ -45,12 +47,18 @@ export default function Orphanage() {
       <Sidebar/>
       <main>
         <div className="orphanage-details">
-          <img src={orph.images[0].url} alt="Lar das meninas" />
+          <img src={orph.images[activeImageIndex].url} alt="Lar das meninas" />
 
           <div className="images">
-            {orph.images.map(image => {
+            {orph.images.map((image, index) => {
               return (
-                <button key={image.id} className="active" type="button">
+                <button key={image.id} 
+                className={activeImageIndex == index ? 'active' : ''}
+                type="button"
+                onClick={() => {
+                  setActiveImageIndex(index); 
+                }}
+                >
                   <img src={image.url} alt={orph.name} />
                 </button>
               )
