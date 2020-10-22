@@ -19,6 +19,7 @@ interface Orphanage {
   open_on_weekends: string,
   images: Array<{
     url: string
+    id: number;
   }>;
 }
 
@@ -47,24 +48,13 @@ export default function Orphanage() {
           <img src={orph.images[0].url} alt="Lar das meninas" />
 
           <div className="images">
-            <button className="active" type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
-            <button type="button">
-              <img src="https://www.gcd.com.br/wp-content/uploads/2020/08/safe_image.jpg" alt="Lar das meninas" />
-            </button>
+            {orph.images.map(image => {
+              return (
+                <button key={image.id} className="active" type="button">
+                  <img src={image.url} alt={orph.name} />
+                </button>
+              )
+            })}
           </div>
           
           <div className="orphanage-details-content">
@@ -90,7 +80,7 @@ export default function Orphanage() {
               </Map>
 
               <footer>
-                <a href="">Ver rotas no Google Maps</a>
+                <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${orph.latitude},${orph.longitude}`}>Ver rotas no Google Maps</a>
               </footer>
             </div>
 
