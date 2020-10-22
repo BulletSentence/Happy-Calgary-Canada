@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import mapMarker from '../images/map-marker.svg'
 import { FiPlus, FiArrowRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
@@ -6,8 +6,23 @@ import '../styles/pages/orphMap.css'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import mapIcon from '../utils/mapIcon'
+import api from '../services/api'
+
+interface Orphanage {
+    id: number,
+    latitude: number,
+    longitude: number,
+    name: string,
+}
 
 function OrphMap() {
+    const [orphs, setOrphs] = useState<Orphanage[]>([])
+    useEffect(() => {
+        api.get('orph').then(response => {
+            setOrphs(response.data); 
+        }) ;
+    }, []);
+
     return (
         <div id="page-map">
             <aside>
@@ -29,17 +44,24 @@ function OrphMap() {
                 }}> 
                 <TileLayer url='https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'>
                 </TileLayer> 
-                <Marker
+                {orphs.map(orph => {
+                    return (
+                        <Marker
                     icon={mapIcon}
-                    position={[51.0272883,-114.368013]}>
+                    position={[
+                        orph.latitude, 
+                        orph.longitude]} 
+                        key={orph.id}>
                 <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
-                    Lar de todos
-                    <Link to='/orph/1'>
+                    {orph.name}
+                    <Link to={`/orph/${orph.id}`}>
                         <FiArrowRight size={32} color='#FFF' />
                     </Link>
                 </Popup>
 
                 </Marker>
+                    );
+                })}
                 </Map>
             <Link to="/orph/create" className="create-orph">
                 <FiPlus size={32} color="FFF"></FiPlus>
