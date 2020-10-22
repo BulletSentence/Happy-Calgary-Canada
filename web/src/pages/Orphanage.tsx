@@ -105,11 +105,19 @@ export default function Orphanage() {
                 Segunda à Sexta <br />
                 {orph.opening_hours}
               </div>
-              <div className="open-on-weekends">
+              {orph.open_on_weekends ? (
+                <div className="open-on-weekends">
                 <FiInfo size={32} color="#39CC83" />
                 Atendemos <br />
                 fim de semana
               </div>
+              ) : (
+                <div className="open-on-weekends dont-open">
+                <FiInfo size={32} color="#FF669D" />
+                Não atendemos <br />
+                fim de semana
+              </div>
+              ) }
             </div>
 
             <button type="button" className="contact-button">
