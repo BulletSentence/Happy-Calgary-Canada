@@ -18,11 +18,15 @@ export default function App() {
         }}>
         <Marker
           icon={MapMarker}
+          calloutAnchor={{
+            x: 0,
+            y: 0,
+          }}
           coordinate={{
             latitude: -15.7217175,
             longitude: -48.0774442,
           }}>
-          <Callout tooltip={true}>
+          <Callout tooltip={true} onPress={() => {alert("oi")}}>
             <View style={styles.calloutContainer}>
               <Text style={styles.calloutText}> Oie </Text> 
             </View>
