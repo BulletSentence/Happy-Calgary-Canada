@@ -3,8 +3,21 @@ import { StyleSheet, View, Dimensions, Text, TouchableOpacity } from 'react-nati
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons'
 import MapMarker from './src/images/map-marker-icon.png';
+import { useFonts } from 'expo-font';
+import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <MapView
@@ -26,20 +39,20 @@ export default function App() {
             latitude: -15.7217175,
             longitude: -48.0774442,
           }}>
-          <Callout tooltip={true} onPress={() => {alert("oi")}}>
+          <Callout tooltip={true} onPress={() => { alert("oi") }}>
             <View style={styles.calloutContainer}>
-              <Text style={styles.calloutText}> Oie </Text> 
+              <Text style={styles.calloutText}> Oie </Text>
             </View>
           </Callout>
         </Marker>
       </MapView>
       <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            Encontrei dois
+        <Text style={styles.footerText}>
+          Encontrei dois
           </Text>
-          <TouchableOpacity style={styles.cObutton} onPress={() => {}}>
-            <Feather name="plus" size={20} color="#FFF"/>
-          </TouchableOpacity>
+        <TouchableOpacity style={styles.cObutton} onPress={() => { }}>
+          <Feather name="plus" size={20} color="#FFF" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -68,6 +81,7 @@ const styles = StyleSheet.create({
   calloutText: {
     color: '#0089a5',
     fontSize: 14,
+    fontFamily: 'Nunito_700Bold',
   },
 
   footer: {
@@ -87,8 +101,9 @@ const styles = StyleSheet.create({
 
   footerText: {
     color: '#8fa7b3',
+    fontFamily: 'Nunito_700Bold'
   },
-  
+
   cObutton: {
     width: 56,
     height: 56,
