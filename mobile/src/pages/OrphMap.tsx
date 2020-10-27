@@ -5,8 +5,11 @@ import MapMarker from '../images/map-marker-icon.png';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useFonts } from 'expo-font';
 import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
+import { useNavigation } from '@react-navigation/native';
 
 export default function OrphMap() {
+
+  const navigation = useNavigation();
 
     const [fontsLoaded] = useFonts({
         Nunito_600SemiBold,
@@ -16,6 +19,10 @@ export default function OrphMap() {
     
       if (!fontsLoaded) {
         return null;
+      }
+
+      function handleNavigateToOrphDetails() {
+        navigation.navigate('OrphDetails');
       }
 
     return(
@@ -39,7 +46,7 @@ export default function OrphMap() {
               latitude: -15.7217175,
               longitude: -48.0774442,
             }}>
-            <Callout tooltip={true} onPress={() => { alert("oi") }}>
+            <Callout tooltip={true} onPress={handleNavigateToOrphDetails}>
               <View style={styles.calloutContainer}>
                 <Text style={styles.calloutText}> Oie </Text>
               </View>

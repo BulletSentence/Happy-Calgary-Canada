@@ -2,6 +2,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import OrphMap from './pages/OrphMap';
+import OrphDetails from './pages/OrphDetails';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -9,7 +10,14 @@ export default function Routes() {
     return (
         <NavigationContainer>
             <Navigator screenOptions={{ headerShown: false }}>
-                <Screen name="OrphMap" component={OrphMap}/>
+                <Screen 
+                    name="OrphMap" 
+                    component={OrphMap}
+                />
+                 <Screen 
+                    name="OrphDetails" 
+                    component={OrphDetails}
+                />
             </Navigator>
         </NavigationContainer>
     );
