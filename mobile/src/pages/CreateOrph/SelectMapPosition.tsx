@@ -11,7 +11,7 @@ export default function SelectMapPosition() {
   const navigation = useNavigation();
 
   function handleNextStep() {
-    navigation.navigate('OrphanageData');
+    navigation.navigate('OrphData');
   }
 
   return (
