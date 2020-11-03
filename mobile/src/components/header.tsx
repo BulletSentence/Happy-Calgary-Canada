@@ -6,9 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 
 interface HeaderProps {
     title: string;
+    showCancelBtn?: boolean;
 }
 
-export default function Header(props: HeaderProps) {
+export default function Header({title, showCancelBtn = true}: HeaderProps) {
 
     const navigation = useNavigation();
     function handleGoBack2Home() {
@@ -22,11 +23,15 @@ export default function Header(props: HeaderProps) {
                 <Feather name="arrow-left" size={24} color='#15b6d6'/>
             </BorderlessButton>
 
-            <Text style={styles.title}>{props.title}</Text>
+            <Text style={styles.title}>{title}</Text>
 
+            { showCancelBtn ? (
             <BorderlessButton onPress={handleGoBack2Home}>
                 <Feather name="x" size={24} color='#ff669d'/>
             </BorderlessButton>
+            ) : (
+                <View/>
+            )}
         </View>
     );
 }

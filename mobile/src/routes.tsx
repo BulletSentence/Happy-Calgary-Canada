@@ -22,16 +22,24 @@ export default function Routes() {
                     component={OrphDetails}
                     options={{
                         headerShown: true,
-                        header: () => <Header title='Detalhe'/>
+                        header: () => <Header showCancelBtn={false} title='Detalhe'/>
                     }}
                 />
                 <Screen 
                     name="SelectMapPosition" 
                     component={SelectMapPosition}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title='Secione o local no Mapa'/>
+                    }}
                 />
                 <Screen 
                     name="OrphData" 
                     component={OrphData}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title='Informe os dados'/>
+                    }}
                 />
             </Navigator>
         </NavigationContainer>
