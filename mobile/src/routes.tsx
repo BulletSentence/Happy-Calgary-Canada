@@ -5,6 +5,7 @@ import OrphMap from './pages/OrphMap';
 import OrphDetails from './pages/OrphDetails';
 import OrphData from './pages/CreateOrph/OrphData';
 import SelectMapPosition from './pages/CreateOrph/SelectMapPosition';
+import Header from './components/header';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -19,6 +20,10 @@ export default function Routes() {
                  <Screen 
                     name="OrphDetails" 
                     component={OrphDetails}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title='Detalhe'/>
+                    }}
                 />
                 <Screen 
                     name="SelectMapPosition" 
