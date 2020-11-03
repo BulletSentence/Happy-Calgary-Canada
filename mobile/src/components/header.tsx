@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
 export default function Header() {
     return (
-        <View style={styles.container} />
+        <View style={styles.container}>
+            <Text style={styles.title}> Texto </Text>
+        </View>
     );
 }
 
@@ -17,5 +19,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+
+    title: {
+        fontFamily: 'Nunito_600SemiBold',
+        color: '#8fa7b3',
+        fontSize: 16,
     }
 })
