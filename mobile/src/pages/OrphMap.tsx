@@ -6,6 +6,7 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useFonts } from 'expo-font';
 import { Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
 import { useNavigation } from '@react-navigation/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export default function OrphMap() {
 
@@ -61,9 +62,9 @@ export default function OrphMap() {
         <Text style={styles.footerText}>
           Encontrei dois
             </Text>
-        <TouchableOpacity style={styles.cObutton} onPress={handleNavigateToCreateOrph}>
+        <RectButton style={styles.cObutton} onPress={handleNavigateToCreateOrph}>
           <Feather name="plus" size={20} color="#FFF" />
-        </TouchableOpacity>
+        </RectButton>
       </View>
     </View>
   );
