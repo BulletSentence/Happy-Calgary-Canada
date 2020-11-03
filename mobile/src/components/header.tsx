@@ -10,10 +10,16 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
     return (
         <View style={styles.container}>
+
             <BorderlessButton onPress={() => {}}>
                 <Feather name="arrow-left" size={24} color='#15b6d6'/>
             </BorderlessButton>
+
             <Text style={styles.title}>{props.title}</Text>
+
+            <BorderlessButton onPress={() => {}}>
+                <Feather name="x" size={24} color='#ff669d'/>
+            </BorderlessButton>
         </View>
     );
 }
