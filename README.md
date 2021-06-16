@@ -1,3 +1,3 @@
 # Happy (Calgary, Canada)
-Website for search orphanages to visit, in Calgary.
+Website for search houses to visit, in Calgary.
 
